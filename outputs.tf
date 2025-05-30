@@ -32,11 +32,26 @@ output "available_zones_used" {
 }
 
 output "internet_gateway_id" {
-  description = "ID do Internet Gateway principal"
+  description = "Main gateway id"
   value       = aws_internet_gateway.main_igw.id
 }
 
 output "public_route_table_id" {
-  description = "ID da Tabela de Rotas Pública principal"
+  description = "Public route table id"
   value       = aws_route_table.public_rt.id
+}
+
+output "nat_gateway_eip" {
+  description = "NAT Gateway Elastic ip id"
+  value       = aws_eip.nat_eip.public_ip
+}
+
+output "nat_gateway_id" {
+  description = "Main NAT Gateway id"
+  value       = aws_nat_gateway.main_nat_gw.id
+}
+
+output "private_route_table_id" {
+  description = "Main private route table id"
+  value       = aws_route_table.private_rt.id
 }
