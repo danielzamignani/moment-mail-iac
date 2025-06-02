@@ -55,3 +55,18 @@ output "private_route_table_id" {
   description = "Main private route table id"
   value       = aws_route_table.private_rt.id
 }
+
+output "alb_security_group_id" {
+  description = "alb security group id"
+  value       = aws_security_group.alb_sg.id
+}
+
+output "app_security_group_id" {
+  description = "App security group id"
+  value       = aws_security_group.app_sg.id
+}
+
+output "db_security_group_id" {
+  description = "db security group id"
+  value       = aws_security_group.db_sg.id
+}
