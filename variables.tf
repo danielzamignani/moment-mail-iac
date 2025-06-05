@@ -15,3 +15,19 @@ variable "project_name" {
   type        = string
   default     = "moment-mail"
 }
+
+
+
+variable "db_username" {
+  description = "Master username for the RDS database instance."
+  type        = string
+  sensitive   = true
+  # Sem default, para ser fornecido via .tfvars ou variável de ambiente
+}
+
+variable "db_password" {
+  description = "Master password for the RDS database instance."
+  type        = string
+  sensitive   = true
+  # Sem default, para ser fornecido via .tfvars ou variável de ambiente
+}

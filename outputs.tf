@@ -70,3 +70,21 @@ output "db_security_group_id" {
   description = "db security group id"
   value       = aws_security_group.db_sg.id
 }
+
+
+
+output "db_instance_address" {
+  description = "O endereço (endpoint) da instância do banco de dados RDS."
+  value       = aws_db_instance.main_db.address
+  sensitive   = true # O endpoint pode ser considerado sensível
+}
+
+output "db_instance_port" {
+  description = "A porta da instância do banco de dados RDS."
+  value       = aws_db_instance.main_db.port
+}
+
+output "db_instance_name" {
+  description = "O nome do banco de dados (DBName) criado na instância RDS."
+  value       = aws_db_instance.main_db.db_name
+}

@@ -278,3 +278,40 @@ resource "aws_security_group" "db_sg" {
     ManagedBy = "Terraform"
   }
 }
+
+resource "aws_db_subnet_group" "main_db_subnet_group" {
+  name       = "${var.project_name}-db-subnet-sg"
+  subnet_ids = [aws_subnet.private_a.id, aws_subnet.private_b.id]
+
+  tags = {
+    Name      = "${var.project_name}-db-subnet-group"
+    Project   = var.project_name
+    ManagedBy = "Terraform"
+  }
+}
+
+resource "aws_db_instance" "main_db" {
+  identifier        = "${var.project_name}-db-instance"
+  allocated_storage = 20
+  engine            = "postgres"
+  engine_version    = "17.4"
+  instance_class    = "db.t3.micro"
+
+  db_name  = "momentmaildb"
+  username = var.db_username
+  password = var.db_password
+
+  db_subnet_group_name   = aws_db_subnet_group.main_db_subnet_group.name
+  vpc_security_group_ids = [aws_security_group.db_sg.id]
+
+  skip_final_snapshot     = true
+  publicly_accessible     = false
+  multi_az                = false
+  backup_retention_period = 0
+
+  tags = {
+    Name      = "${var.project_name}-db-instance"
+    Project   = var.project_name
+    ManagedBy = "Terraform"
+  }
+}
