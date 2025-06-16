@@ -30,6 +30,5 @@ resource "aws_db_instance" "main" {
   tags = {
     Name      = "${var.project_name}-db-instance"
     Project   = var.project_name
-    ManagedBy = "Terraform"
   }
 }
