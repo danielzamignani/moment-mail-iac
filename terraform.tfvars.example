@@ -1,2 +1,3 @@
 db_username = "admin"
 db_password = "admin"
+app_image_uri = "COLE_A_URI_COMPLETA_DA_SUA_IMAGEM_ECR_AQUI"

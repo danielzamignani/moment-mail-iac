@@ -39,3 +39,8 @@ variable "db_password" {
   type        = string
   sensitive   = true
 }
+
+variable "app_image_uri" {
+  description = "The full URI of the application's Docker image in ECR."
+  type        = string
+}
