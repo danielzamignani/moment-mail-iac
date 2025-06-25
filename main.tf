@@ -19,6 +19,8 @@ provider "aws" {
   region = var.aws_region
 }
 
+data "aws_caller_identity" "current" {}
+
 module "vpc" {
   source = "./modules/vpc"
 
@@ -73,4 +75,14 @@ module "ecs_app" {
   db_user     = var.db_username
   db_password = var.db_password
   db_name     = module.rds.db_instance_name
+}
+
+module "cicd" {
+  source = "./modules/cicd"
+
+  project_name            = var.project_name
+  codestar_connection_arn = var.codestar_connection_arn
+  ecr_repository_arn      = module.ecs_app.ecr_repository_arn
+  ecr_repository_name     = module.ecs_app.ecr_repository_name
+  aws_account_id          = data.aws_caller_identity.current.account_id
 }

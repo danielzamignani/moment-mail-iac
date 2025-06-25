@@ -44,3 +44,8 @@ variable "app_image_uri" {
   description = "The full URI of the application's Docker image in ECR."
   type        = string
 }
+
+variable "codestar_connection_arn" {
+  description = "The ARN of the CodeStar Connection to GitHub, created manually in the AWS Console."
+  type        = string
+}
